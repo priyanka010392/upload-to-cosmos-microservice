@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.5.2</version>
+		<version>2.3.12.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.priyanka</groupId>
@@ -51,6 +51,30 @@
 			<artifactId>springdoc-openapi-ui</artifactId>
 			<version>${openapi.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>com.microsoft.azure</groupId>
+			<artifactId>spring-data-cosmosdb</artifactId>
+			<version>2.3.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-test</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.azure/azure-cosmos -->
+		<dependency>
+			<groupId>com.azure</groupId>
+			<artifactId>azure-cosmos</artifactId>
+			<version>4.19.0</version>
+		</dependency>
+
 	</dependencies>
 	<dependencyManagement>
 		<dependencies>
@@ -61,6 +85,11 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
+<!--			<dependency>-->
+<!--				<groupId>io.projectreactor.netty</groupId>-->
+<!--				<artifactId>reactor-netty</artifactId>-->
+<!--				<version>0.9.13.RELEASE</version>-->
+<!--			</dependency>-->
 		</dependencies>
 	</dependencyManagement>
 

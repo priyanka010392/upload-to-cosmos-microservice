@@ -10,11 +10,11 @@ public class ChangeFeedConfigBuilder {
 
     @Value("my-host")
     private String hostName;
-    @Value("${azure.cosmosdb.uri}")
+    @Value("${azure.cosmos.uri}")
     private String endpointUri;
-    @Value("${azure.cosmosdb.key}")
+    @Value("${azure.cosmos.key}")
     private String primaryKey;
-    @Value("${azure.cosmosdb.database}")
+    @Value("${azure.cosmos.database}")
     private String databaseName;
     @Value("${azure.cosmosdb.container.feed}")
     private String feedContainerName;
@@ -43,7 +43,7 @@ public class ChangeFeedConfigBuilder {
     private ChangeFeedProcessor buildChangeFeedProcessor(CosmosAsyncContainer feedContainer,
                                                  CosmosAsyncContainer leaseContainer) {
 
-        ChangeFeedProcessor changeFeedProcessor = new ChangeFeedProcessorBuilder()
+        return new ChangeFeedProcessorBuilder()
                 .hostName(hostName)
                 .feedContainer(feedContainer)
                 .leaseContainer(leaseContainer)
@@ -54,7 +54,6 @@ public class ChangeFeedConfigBuilder {
                     }
                 })
                 .buildChangeFeedProcessor();
-        return changeFeedProcessor;
     }
 
     private void processFeed(JsonNode item) {

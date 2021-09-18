@@ -1,8 +1,8 @@
-azure:
-  cosmosdb:
-    uri: $COSMOSDB_URI
-    key: $COSMOSDB_KEY
-    database: $COSMOSDB_NAME
-    container:
-      feed: $FEED_CONTAINER_ID
-      lease: $LEASE_CONTAINER_ID
+#azure:
+#  cosmosdb:
+#    uri: $COSMOSDB_URI
+#    key: $COSMOSDB_KEY
+#    database: $COSMOSDB_NAME
+#    container:
+#      feed: $FEED_CONTAINER_ID
+#      lease: $LEASE_CONTAINER_ID

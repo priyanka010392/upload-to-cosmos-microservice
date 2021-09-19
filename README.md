@@ -1,5 +1,5 @@
 # upload-to-cosmos-microservice
-### This is a spring boot microservice to upload data to cosmos using sql api
+### This is a spring boot microservice to upload data to cosmos using SQL API, it also demostrates an implementation of ChangeFeedProcessor.
 
 1. Create a Cosmos DB account or Install a Cosmos DB Emulator
    1. [Export Cosmos DB Emulator Certificate](https://docs.microsoft.com/en-us/azure/cosmos-db/local-emulator-export-ssl-certificates)

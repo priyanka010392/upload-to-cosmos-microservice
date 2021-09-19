@@ -6,3 +6,15 @@
 #    container:
 #      feed: $FEED_CONTAINER_ID
 #      lease: $LEASE_CONTAINER_ID
+management:
+  health:
+    cosmos:
+      enabled: true
+  endpoint:
+    health:
+      show-details: always
+      show-components: always
+  endpoints:
+    web:
+      exposure:
+        include: "*"

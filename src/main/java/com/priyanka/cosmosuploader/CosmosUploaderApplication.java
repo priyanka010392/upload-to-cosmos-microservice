@@ -17,7 +17,7 @@ import java.security.cert.X509Certificate;
 @SpringBootApplication
 public class CosmosUploaderApplication {
 
-	public static void main(String[] args) throws NoSuchAlgorithmException, KeyManagementException, IOException {
+	public static void main(String[] args) /*throws NoSuchAlgorithmException, KeyManagementException, IOException*/ {
 		/*
 		 *  fix for
 		 *    Exception in thread "main" javax.net.ssl.SSLHandshakeException:
@@ -25,7 +25,7 @@ public class CosmosUploaderApplication {
 		 *           PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException:
 		 *               unable to find valid certification path to requested target
 		 */
-		TrustManager[] trustAllCerts = new TrustManager[] {
+/*		TrustManager[] trustAllCerts = new TrustManager[] {
 				new X509TrustManager() {
 					public java.security.cert.X509Certificate[] getAcceptedIssuers() {
 						return null;
@@ -46,9 +46,9 @@ public class CosmosUploaderApplication {
 		HostnameVerifier allHostsValid = (String hostname, SSLSession session) -> true;
 		// Install the all-trusting host verifier
 		HttpsURLConnection.setDefaultHostnameVerifier(allHostsValid);
-		/*
+		*//*
 		 * end of the fix
-		 */
+		 *//*
 
 		URL url = new URL("https://localhost:8081/_explorer/index.html");
 		URLConnection con = url.openConnection();
@@ -59,7 +59,7 @@ public class CosmosUploaderApplication {
 				break;
 			}
 			System.out.print((char)ch);
-		}
+		}*/
 		SpringApplication.run(CosmosUploaderApplication.class, args);
 	}
 

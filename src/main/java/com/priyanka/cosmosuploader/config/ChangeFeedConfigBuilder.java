@@ -2,9 +2,13 @@ package com.priyanka.cosmosuploader.config;
 
 import com.azure.cosmos.*;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.priyanka.cosmosuploader.service.InventoryProcessingService;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+@Slf4j
 @Component
 public class ChangeFeedConfigBuilder {
 
@@ -20,6 +24,9 @@ public class ChangeFeedConfigBuilder {
     private String feedContainerName;
     @Value("${azure.cosmosdb.container.lease}")
     private String leaseContainerName;
+
+    @Autowired
+    InventoryProcessingService inventoryProcessingService;
 
     ChangeFeedProcessor build() {
         CosmosAsyncClient client =
@@ -37,7 +44,11 @@ public class ChangeFeedConfigBuilder {
             throw new IllegalArgumentException(
                     "Application could not start. feedContainer and/or leaseContainer is null.");
         }
-        return buildChangeFeedProcessor(feedContainer, leaseContainer);
+        ChangeFeedProcessor changeFeedProcessor = buildChangeFeedProcessor(feedContainer, leaseContainer);
+
+        log.info("Created feed processor. Process in loop...");
+        changeFeedProcessor.getEstimatedLag();
+        return changeFeedProcessor;
     }
 
     private ChangeFeedProcessor buildChangeFeedProcessor(CosmosAsyncContainer feedContainer,
@@ -49,7 +60,6 @@ public class ChangeFeedConfigBuilder {
                 .leaseContainer(leaseContainer)
                 .handleChanges(docs -> {
                     for (JsonNode item : docs) {
-                        // Implementation for handling and processing of each JsonNode item goes here
                         processFeed(item);
                     }
                 })
@@ -57,6 +67,7 @@ public class ChangeFeedConfigBuilder {
     }
 
     private void processFeed(JsonNode item) {
-        //process
+        log.info("ID----> " + item.get("productId"));
+        inventoryProcessingService.processInventory(item);
     }
 }
